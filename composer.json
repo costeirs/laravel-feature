@@ -15,14 +15,14 @@
     ],
     "require": {
         "php" : "^7.1",
-        "illuminate/database": "~5.6",
-        "illuminate/support": "~5.6"
+        "illuminate/database": "^6.0",
+        "illuminate/support": "^6.0"
     },
     "require-dev": {
-        "mockery/mockery": "^0.9.4",
-        "orchestra/database": "^3.6",
-        "orchestra/testbench": "~3.6",
-        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.0",
+        "orchestra/database": "^4.0",
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0",
         "squizlabs/php_codesniffer": "^2.3"
     },
     "autoload": {
@@ -37,8 +37,8 @@
     },
     "scripts": {
         "test": "phpunit",
-        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src/Config src/Console src/Domain src/Facade src/Facade src/Featurable src/Model src/Provider src/Service",
-        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src/Config src/Console src/Domain src/Facade src/Facade src/Featurable src/Model src/Provider src/Service"
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src/*",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src/*"
     },
     "config": {
         "sort-packages": true

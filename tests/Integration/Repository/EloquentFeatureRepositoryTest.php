@@ -16,7 +16,7 @@ class EloquentFeatureRepositoryTest extends TestCase
     /** @var EloquentFeatureRepository */
     private $repository;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -40,11 +40,11 @@ class EloquentFeatureRepositoryTest extends TestCase
 
     /**
      * Tests that the save operation throws an exception if something goes wrong.
-     *
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
      */
     public function testSaveThrowsExceptionOnError()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+
         $feature = Feature::fromNameAndStatus(null, true);
 
         $this->repository->save($feature);
@@ -68,12 +68,12 @@ class EloquentFeatureRepositoryTest extends TestCase
 
     /**
      * Tests the removal operation throws an exception if the feature is not found.
-     *
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
-     * @expectedExceptionMessage Unable to find the feature.
      */
     public function testRemoveThrowsErrorOnFeatureNotFound()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+        $this->expectExceptionMessage('Unable to find the feature.');
+
         $this->addTestFeature();
 
         $feature = Feature::fromNameAndStatus('unknown.feature', true);
@@ -96,11 +96,11 @@ class EloquentFeatureRepositoryTest extends TestCase
 
     /**
      * Tests an exception is thrown if the feature is not found.
-     *
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
      */
     public function testFindByNameThrowsErrorOnFeatureNotFound()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+
         $this->addTestFeature();
 
         /** @var Feature $feature */
@@ -130,11 +130,11 @@ class EloquentFeatureRepositoryTest extends TestCase
 
     /**
      * Tests the enable operation throws an error if the feature is not found.
-     *
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
      */
     public function testEnableForThrowsErrorOnFeatureNotFound()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+
         $this->createTestEntityTable();
 
         $entity = $this->addTestEntity();
@@ -190,11 +190,11 @@ class EloquentFeatureRepositoryTest extends TestCase
 
     /**
      * Tests the disable operation throws an error if the feature is not found.
-     *
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
      */
     public function testDisableForThrowsErrorOnFeatureNotFound()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+
         $this->createTestEntityTable();
 
         $entity = $this->addTestEntity();
@@ -251,12 +251,12 @@ class EloquentFeatureRepositoryTest extends TestCase
 
     /**
      * Tests an exception is thrown if the feature is not found.
-     *
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
-     * @expectedExceptionMessage Unable to find the feature.
      */
     public function testIsEnabledForThrowsExceptionOnFeatureNotFound()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+        $this->expectExceptionMessage('Unable to find the feature.');
+
         $this->createTestEntityTable();
 
         $entity = $this->addTestEntity();

@@ -17,7 +17,7 @@ class FeatureManagerTest extends TestCase
     /** @var FeatureManager */
     private $manager;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -42,12 +42,12 @@ class FeatureManagerTest extends TestCase
 
     /**
      * Tests an exception is thrown if something goes wrong during the saving of a new feature.
-     *
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
-     * @expectedExceptionMessage Unable to save the feature.
      */
     public function testAddThrowsExceptionOnError()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+        $this->expectExceptionMessage('Unable to save the feature.');
+
         $this->repositoryMock->expects($this->once())
             ->method('save')
             ->willThrowException(new FeatureException('Unable to save the feature.'));
@@ -75,11 +75,12 @@ class FeatureManagerTest extends TestCase
     }
 
     /**
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
-     * @expectedExceptionMessage Unable to remove the feature.
      */
     public function testRemoveThrowsExceptionOnError()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+        $this->expectExceptionMessage('Unable to remove the feature.');
+
         $feature = $this->getMockBuilder(Feature::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -116,12 +117,12 @@ class FeatureManagerTest extends TestCase
 
     /**
      * Tests that an exception is thrown if the feature is not found.
-     *
-     * @expectedException \LaravelFeature\Domain\Exception\FeatureException
-     * @expectedExceptionMessage Unable to save the feature.
      */
     public function testRenameFeatureThrowsError()
     {
+        $this->expectException(\LaravelFeature\Domain\Exception\FeatureException::class);
+        $this->expectExceptionMessage('Unable to save the feature.');
+
         $feature = $this->getMockBuilder(Feature::class)
             ->disableOriginalConstructor()
             ->getMock();
